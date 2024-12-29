@@ -1,0 +1,266 @@
+{
+    "status": "ok",
+    "totalResults": 33,
+    "articles": [
+        {
+            "source": {
+                "id": null,
+                "name": "CBS Sports"
+            },
+            "author": "",
+            "title": "CeeDee Lamb out for season: Cowboys' Micah Parsons, Cooper Rush appreciate star wideout's 'warrior' toughness - CBS Sports",
+            "description": "Dallas ruled Lamb out for the final two games with his ailing shoulder injury",
+            "url": "https://www.cbssports.com/nfl/news/ceedee-lamb-out-for-season-cowboys-micah-parsons-cooper-rush-appreciate-star-wideouts-warrior-toughness/",
+            "urlToImage": "https://sportshub.cbsistatic.com/i/r/2024/12/26/a6506bc9-641d-4014-8852-71bce73b59fc/thumbnail/1200x675/336d78e75a76f9acf05ac2df6770f13c/lamb-5g.jpg",
+            "publishedAt": "2024-12-26T23:45:00Z",
+            "content": "FRISCO, Texas -- The Dallas Cowboys' injury-plagued 2024 season took another turn on Thursday with the team announcing they are shutting down All-Pro wide receiver CeeDee Lamb for the team's final tw… [+4648 chars]"
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Nic Anderson, Randi Kaye",
+            "title": "Bird flu kills more than half the big cats at a Washington sanctuary - CNN",
+            "description": "Bird flu has been on the rise in Washington state and one sanctuary was hit hard: 20 big cats – more than half of the facility’s population – died over the course of weeks.",
+            "url": "https://www.cnn.com/2024/12/25/us/bird-flu-washington-cats-cases/index.html",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/still-21224701-23728-426-still.jpg?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2024-12-26T23:09:00Z",
+            "content": "Bird flu has been on the rise in Washington state and one sanctuary was hit hard: 20 big cats more than half of the facilitys population died over the course of weeks.\r\nThe Wild Felid Advocacy Center… [+4095 chars]"
+        },
+        {
+            "source": {
+                "id": "abc-news",
+                "name": "ABC News"
+            },
+            "author": "REZA SAIFULLAH Associated Press, EDNA TARIGAN Associated Press",
+            "title": "Prayers and tears mark 20 years since the Indian Ocean tsunami that killed some 230,000 people - ABC News",
+            "description": "People are gathering in prayer and visiting mass graves in Indonesia’s Aceh province to mark 20 years since the massive Indian Ocean tsunami, one of modern history’s worst natural disasters",
+            "url": "https://abcnews.go.com/International/wireStory/prayers-tears-mark-20-years-indian-ocean-tsunami-117109586",
+            "urlToImage": "https://i.abcnewsfe.com/a/a3fbee11-d630-4c6e-a858-831dfa0e1346/wirestory_489f23bd172fa4c01323567eb4ac842f_16x9.jpg?w=1600",
+            "publishedAt": "2024-12-26T21:53:19Z",
+            "content": "BANDA ACEH, Indonesia -- People gathered in prayer and visited mass graves in Indonesias Aceh province on Thursday to mark 20 years since the massive Indian Ocean tsunami hit the region in one of mod… [+4583 chars]"
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Mohammed Tawfeeq",
+            "title": "Israel’s attorney general orders probe into Netanyahu’s wife on suspicion of witness harassment - CNN",
+            "description": "Israel’s Attorney General Gali Baharav-Miara has ordered an investigation into Sara Netanyahu, the wife of Israeli Prime Minister Benjamin Netanyahu, after a report alleged that she had harassed opponents.",
+            "url": "https://www.cnn.com/2024/12/26/middleeast/israel-sara-netanyahu-investigation-allegation-intl-latam/index.html",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/2023-08-17t132831z-468224650-rc2pp2ahebfq-rtrmadp-3-israel-politics-judiciary-metro.JPG?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2024-12-26T21:49:00Z",
+            "content": "Israels Attorney General Gali Baharav-Miara has ordered an investigation into Sara Netanyahu, the wife of Israeli Prime Minister Benjamin Netanyahu, after a report alleged that she had harassed oppon… [+2857 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "BBC News"
+            },
+            "author": null,
+            "title": "Two die in Sydney to Hobart yacht race - BBC.com",
+            "description": "The two crew members died in separate incidents, both after being hit by a boat's boom.",
+            "url": "https://www.bbc.com/news/articles/c0j15l83v7jo",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/8385/live/5ea25c00-c3cf-11ef-99ff-efb946e4e430.jpg",
+            "publishedAt": "2024-12-26T21:48:34Z",
+            "content": "Two people taking part in Australia's annual Sydney to Hobart yacht race have died in separate incidents, according to police.\r\nBoth crew members died in separate incidents after being hit by a boom … [+1517 chars]"
+        },
+        {
+            "source": {
+                "id": "the-washington-post",
+                "name": "The Washington Post"
+            },
+            "author": "Matthew Cappucci",
+            "title": "A sneaky tornado risk may affect Texas and the Mid-South on Thursday - The Washington Post",
+            "description": "The region that includes East Texas, Louisiana and southwest Arkansas could see an isolated rotating thunderstorm.",
+            "url": "https://www.washingtonpost.com/weather/2024/12/26/texas-louisiana-arkansas-tornado-risk/",
+            "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/7V6O73XA3JBZ7AQP5QTGIXGOGY.png&w=1440",
+            "publishedAt": "2024-12-26T21:21:47Z",
+            "content": "Strong to severe thunderstorms presenting a slight risk of damaging winds, hail and an isolated tornado are expected across portions of East Texas, Louisiana and southwest Arkansas on Thursday.\r\nThe … [+2697 chars]"
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Mohammed Tawfeeq, Mostafa Salem",
+            "title": "WHO chief says he was at Yemen airport which Israeli strikes targeted - CNN",
+            "description": "Israeli forces unleashed a series of strikes on the Yemeni capital Sanaa and the western city of Hodeidah on Thursday, according to Houthi-run media, killing at least four people and injuring more than a dozen others.",
+            "url": "https://www.cnn.com/2024/12/26/middleeast/israeli-strikes-yemen-sanaa-houthis-intl/index.html",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/2024-12-26t143823z-420106487-rc22xba5vnh4-rtrmadp-3-israel-palestinians-yemen-strikes.jpg?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2024-12-26T20:57:00Z",
+            "content": "Israeli forces unleashed a series of strikes on the Yemeni capital Sanaa and the western city of Hodeidah on Thursday, according to Houthi-run media, killing at least four people and injuring more th… [+3198 chars]"
+        },
+        {
+            "source": {
+                "id": "politico",
+                "name": "Politico"
+            },
+            "author": "Eugene Daniels",
+            "title": "How Schumer is prepping for Trump 2.0 - POLITICO",
+            "description": "If Democratic leaders have learned one thing from Republicans over the years, it’s that sometimes, the judiciary can be the best bulwark against the opposing party getting what it wants.",
+            "url": "https://www.politico.com/live-updates/2024/12/26/congress/schumers-trump-2-0-00196038",
+            "urlToImage": "https://www.politico.com/dims4/default/f56be23/2147483647/resize/1200x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F7c%2F92%2F8bcc39c34a3fb008b7924d8d60fd%2Fu-s-congress-20782.jpg",
+            "publishedAt": "2024-12-26T20:49:20Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "BBC News"
+            },
+            "author": null,
+            "title": "Five Gaza journalists killed in Israeli strike targeting armed group - BBC.com",
+            "description": "A Palestinian TV channel says they were in a marked media van in the central Gaza Strip.",
+            "url": "https://www.bbc.com/news/articles/c5yg57wrgl7o",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/d07f/live/aa3e8070-c344-11ef-aff0-072ce821b6ab.jpg",
+            "publishedAt": "2024-12-26T20:27:30Z",
+            "content": "A Palestinian TV channel says five of its journalists have been killed in an Israeli strike in the central Gaza Strip.\r\nThey were in a Quds Today van parked outside al-Awda hospital, where the wife o… [+4068 chars]"
+        },
+        {
+            "source": {
+                "id": "reuters",
+                "name": "Reuters"
+            },
+            "author": "Essi Lehto, Andrius Sytas",
+            "title": "Finland boards oil tanker suspected of causing internet, power cable outages - Reuters",
+            "description": "The Finnish customs service said the ship may belong to the shadow fleet of aging tankers that seek to evade sanctions on the sale of Russian oil.",
+            "url": "https://www.reuters.com/world/europe/finland-police-investigate-role-foreign-ship-after-power-cable-outage-2024-12-26/",
+            "urlToImage": "https://www.reuters.com/resizer/v2/OLFYUYRXSBNHVL3EZQFGV3QK3I.jpg?auth=819c6a802263243c520a089799b81b9c5e1b8ff9092a09bf32013572b6c9d9f9&height=1005&width=1920&quality=80&smart=true",
+            "publishedAt": "2024-12-26T20:13:29Z",
+            "content": "HELSINKI, Dec 26 (Reuters) - Finnish authorities on Thursday seized a ship carrying Russian oil in the Baltic Sea on suspicion it caused the outage of an undersea power cable connecting Finland and E… [+6290 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "author": "Kelsey Weekman",
+            "title": "Beyoncé defies ‘Cowboy Carter’ skeptics with a unifying Netflix Christmas half-time performance - Yahoo Entertainment",
+            "description": "Beyoncé's Netflix Halftime Show defied expectations for both the streaming service and her country crossover.",
+            "url": "https://www.yahoo.com/entertainment/beyonce-defies-cowboy-carter-skeptics-with-a-unifying-netflix-christmas-half-time-performance-200839020.html",
+            "urlToImage": "https://s.yimg.com/ny/api/res/1.2/oUSmBQsZ2mbGWzzHzNiQFQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-uploaded-images/2024-12/86ece300-c37b-11ef-b69d-5446b3e41492",
+            "publishedAt": "2024-12-26T20:08:39Z",
+            "content": "Beyoncés country crossover wasnt embraced by everyone at first, but during Netflixs NFL Christmas Halftime Show, it united audiences across the country.\r\nThe singer performed 12 minutes of songs at N… [+2283 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "9to5Mac"
+            },
+            "author": "Ryan Christoffel",
+            "title": "Five new Apple products are coming soon in early 2025, here’s what to expect - 9to5Mac",
+            "description": "Apple has five new products in the works that are expected to arrive in early 2025, here’s what’s coming soon.",
+            "url": "https://9to5mac.com/2024/12/26/five-new-apple-products-coming-soon-early-2025/",
+            "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/12/tim-cook-apple-event.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+            "publishedAt": "2024-12-26T19:52:00Z",
+            "content": "2025 is about to begin, and Apple looks set to kick off the year with several strong product launches. Heres a look at five new products expected to arrive soon in early 2025.\r\nApples most popular Ma… [+4784 chars]"
+        },
+        {
+            "source": {
+                "id": "techcrunch",
+                "name": "TechCrunch"
+            },
+            "author": "Kyle Wiggers",
+            "title": "DeepSeek’s new AI model appears to be one of the best ‘open’ challengers yet - TechCrunch",
+            "description": "ChCC",
+            "url": "https://techcrunch.com/2024/12/26/deepseeks-new-ai-model-appears-to-be-one-of-the-best-open-challengers-yet/",
+            "urlToImage": "https://techcrunch.com/wp-content/uploads/2024/10/GettyImages-1335295270.jpg?resize=1200,675",
+            "publishedAt": "2024-12-26T19:44:50Z",
+            "content": "A Chinese lab has created what appears to be one of the most powerful “open” AI models to date. \r\nThe model, DeepSeek V3, was developed by the AI firm DeepSeek and was released on Wednesday under a p… [+4282 chars]"
+        },
+        {
+            "source": {
+                "id": "reuters",
+                "name": "Reuters"
+            },
+            "author": "Stephen Culp, Alden Bentley",
+            "title": "US stocks tread water in thin trade, benchmark US yield ekes out new high - Reuters",
+            "description": "Wall Street closed mixed on Thursday and the U.S. benchmark Treasury yield eased after scaling the highest level since May in light, directionless post-Christmas trading.",
+            "url": "https://www.reuters.com/markets/global-markets-wrapup-1-2024-12-26/",
+            "urlToImage": "https://www.reuters.com/resizer/v2/4WE5YSDJNJLEHFDNWV4S4JPETE.jpg?auth=a4691873c88ed4f72c4c715041d59e24a8d615d1c83559300a303db2c95c1bfb&height=1005&width=1920&quality=80&smart=true",
+            "publishedAt": "2024-12-26T19:40:41Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Barron's"
+            },
+            "author": "Barron's",
+            "title": "Apple Stock Hasn’t Done This Since 2010. What It Means as Value Nears $4 Trillion. - Barron's",
+            "description": null,
+            "url": "https://www.barrons.com/articles/apple-stock-price-4-trillion-414c6647",
+            "urlToImage": null,
+            "publishedAt": "2024-12-26T19:18:00Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "[Removed]"
+            },
+            "author": null,
+            "title": "[Removed]",
+            "description": "[Removed]",
+            "url": "https://removed.com",
+            "urlToImage": null,
+            "publishedAt": "2024-12-26T19:18:00Z",
+            "content": "[Removed]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "OregonLive"
+            },
+            "author": "Amy Maxmen",
+            "title": "How America lost control of the bird flu, setting the stage for another pandemic - OregonLive",
+            "description": "Nearly a year into the first outbreak of the bird flu among cattle, the virus shows no sign of slowing.",
+            "url": "https://www.oregonlive.com/health/2024/12/how-america-lost-control-of-the-bird-flu-setting-the-stage-for-another-pandemic.html",
+            "urlToImage": "https://www.oregonlive.com/resizer/v2/JZV7KCY5LBBPFNOX6FC2EEXJBA.jpg?auth=e15af57751fe5eeaadee566b366080030bcac19cf811b679f083dd3c33a0ed23&width=1280&quality=90",
+            "publishedAt": "2024-12-26T19:08:00Z",
+            "content": "Keith Poulsens jaw dropped when farmers showed him images on their cellphones at the World Dairy Expo in Wisconsin in October. A livestock veterinarian at the University of Wisconsin, Poulsen had see… [+21468 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Variety"
+            },
+            "author": "Chris Willman",
+            "title": "‘A Complete Unknown’ Fact vs. Fiction: Bob Dylan Experts Go Deep on What’s True or Fanciful in the Celebrated Biopic - Variety",
+            "description": "What's real or fictionalized in the Bob Dylan biopic 'A Complete Unknown'? Several experts, including the author of the source book, go into detail.",
+            "url": "https://variety.com/2024/music/news/complete-unknown-fact-fiction-bob-dylan-biopic-experts-weigh-in-1236260141/",
+            "urlToImage": "https://variety.com/wp-content/uploads/2024/12/Complete-Unknown_c7503f.jpg?w=1000&h=563&crop=1",
+            "publishedAt": "2024-12-26T19:07:00Z",
+            "content": "“How does it feel?” is one way by which to measure a movie. But if you’ve seen “A Complete Unknown,” the Bob Dylan biopic that opened on Christmas Day, you may have left the theater singing to yourse… [+34206 chars]"
+        },
+        {
+            "source": {
+                "id": "espn",
+                "name": "ESPN"
+            },
+            "author": "ESPN",
+            "title": "Betting tips for 'Thursday Night Football': Seahawks at Bears - ESPN",
+            "description": "Betting the Seattle Seahawks-Chicago Bears tilt on \"Thursday Night Football\"? Here's what you need to know.",
+            "url": "https://www.espn.com/espn/betting/story/_/id/43167971/thursday-night-nfl-football-week-17-picks-betting-odds-lines-seahawks-bears",
+            "urlToImage": "https://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2024%2F1226%2Fr1432020_1296x729_16%2D9.jpg",
+            "publishedAt": "2024-12-26T19:00:00Z",
+            "content": "Dec 26, 2024, 02:00 PM ET\r\nWeek 17 continues after with a post-Christmas showdown between the Seattle Seahawks and Chicago Bears. The Seahawks are still alive in the NFC playoff hunt, although they n… [+3772 chars]"
+        },
+        {
+            "source": {
+                "id": "cbs-news",
+                "name": "CBS News"
+            },
+            "author": "Emily Mae Czachor",
+            "title": "Hudson Meek, 16-year-old \"Baby Driver\" actor, dies after falling from a moving vehicle, officials say - CBS News",
+            "description": "Hudson Meek, the 16-year-old actor known for his performance in the 2017 film \"Baby Driver,\" died Dec. 21 in Alabama, authorities said.",
+            "url": "https://www.cbsnews.com/news/hudson-meek-dead-baby-driver-actor-falling-from-moving-vehicle-alabama/",
+            "urlToImage": "https://assets2.cbsnewsstatic.com/hub/i/r/2024/12/26/f4c9d38d-2883-4928-9917-a4d69caa639e/thumbnail/1200x630/ae61543b2cc2efce4fce8cdef2ebb2b2/hudson-meek-crop.jpg?v=fa9977353833f46f40b07abcd9d5240b",
+            "publishedAt": "2024-12-26T18:47:55Z",
+            "content": "Hudson Meek, the child actor known best for his performance in the 2017 film \"Baby Driver,\" has died, authorities said. He was 16.\r\nMeek was pronounced dead Dec. 21 at University of Alabama Hospital … [+2014 chars]"
+        }
+    ]
+}
