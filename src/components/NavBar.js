@@ -10,6 +10,10 @@ export class NavBar extends Component {
       isDarkMode: savedMode,
     };
   }
+  componentDidMount() {
+    // Apply dark mode class to body when the component mounts
+    this.toggleDarkMode(this.state.isDarkMode)
+  }
   toggleDarkMode = (mode) => {
     this.setState({ isDarkMode: mode }, () => {
       // Save preference in localStorage
