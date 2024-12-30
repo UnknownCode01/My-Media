@@ -24,6 +24,7 @@ body {
 }
 
 /* Dark Mode Styles */
+
 body.dark-mode{
   background-color: #3E5879;
   color: white;
@@ -34,12 +35,24 @@ body.dark-mode .button {
   color: white;
   border:1px solid rgb(0, 0, 0);
 }
+
 body.dark-mode .card-body {
   background-color: #D8C4B6;
   color: rgb(0, 0, 0);
 }
+
 body.dark-mode .read-more-button {
   background-color: #000000;
   color: rgb(255, 255, 255);
   border:0px;
+}
+/* Card container center alignment */
+.card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Loading */
+.loading{
+  width: 50px; height: 50px;
 }
