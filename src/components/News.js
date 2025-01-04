@@ -1,117 +1,101 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
 import Spinner from "./Spinner";
+import { useParams } from "react-router-dom";
 
-export class News extends Component {
-  apiKey = process.env.REACT_APP_API_KEY;
-  static defaultProps = {
-    q: "general",
-    pageSize: 6,
-  };
-  static propTypes = {
-    q: PropTypes.string,
-    pageSize: PropTypes.number,
-  };
-  constructor() {
-    super();
-    this.state = {
-      articles: [],
-      loading: false,
-      defaultImage:
-        "https://plus.unsplash.com/premium_photo-1707080369554-359143c6aa0b?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      page: 1,
-    };
-  }
-  async updateNews() {
-    let url = `https://newsapi.org/v2/everything?q=${this.props.q}&apiKey=${this.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
+const News = ({ pageSize, q }) => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  // const [defaultImage, setDefaultImage] = useState("news.jpeg");
+  const defaultImage = "/news.jpeg";
+  const [page, setPage] = useState(1);
+  const [totalResults, settotalResults] = useState(100);
+  const { searchItem } = useParams(); // Get searchItem from the URL params
+  const apiKey = process.env.REACT_APP_API_KEY;
+
+  const updateNews = async (query) => {
+    console.log(searchItem);
+    
+    let url = `https://newsapi.org/v2/everything?q=${searchItem || query}&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
+    setLoading(true);
     let data = await fetch(url);
     let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      loading: false,
-      totalResults: parsedData.totalResults,
-    });
-  }
-  async componentDidMount() {
-    this.updateNews();
-  }
-
-  handlePrevClick = async () => {
-    this.setState({ page: this.state.page - 1 }, () => {
-      console.log(`prev${this.state.page}`);
-      this.updateNews();
-    });
+    setArticles(parsedData.articles);
+    settotalResults(parsedData.totalResults);
+    setLoading(false);
   };
 
-  handleNextClick = async () => {
-    this.setState({ page: this.state.page + 1 }, () => {
-      console.log(`next${this.state.page}`);
-      this.updateNews();
-    });
+  useEffect(() => {
+    updateNews(q);
+  }, [q, searchItem, pageSize, page]);
+
+  const handlePrevClick = () => {
+    setPage(page - 1);
   };
 
-  render() {
-    return (
-      <div className="container my-3">
-        <h2 className="text-center">Top Headlines</h2>
-        {this.state.loading && <Spinner />}
-        <div className="row">
-          {!this.state.loading &&
-            this.state.articles.map((element) => {
-              if (element.title == null || element.title === "[Removed]") {
-                return null; // Skip this iteration if there's no title
-              } else {
-                return (
-                  <div className="col-md-4" key={element.url}>
-                    <NewsItem
-                      title={
-                        element.title == null
-                          ? null
-                          : element.title.slice(0, 60)
-                      }
-                      description={
-                        element.description == null
-                          ? null
-                          : element.description.slice(0, 80)
-                      }
-                      imageUrl={
-                        element.urlToImage == null
-                          ? this.state.defaultImage
-                          : element.urlToImage
-                      }
-                      newsUrl={element.url}
-                      author={element.author || "unknown"}
-                      date={element.publishedAt}
-                      source={element.source.name}
-                    />
-                  </div>
-                );
-              }
-            })}
-        </div>
-        <div className="container d-flex justify-content-between">
-          <button
-            type="button"
-            disabled={this.state.page <= 1}
-            class="button btn btn-outline-secondary"
-            onClick={this.handlePrevClick}
-          >
-            &larr; Previous
-          </button>
-          <button
-            type="button"
-            disabled={this.state.page >= Math.floor(100 / this.props.pageSize)}
-            class="button btn btn-outline-secondary"
-            onClick={this.handleNextClick}
-          >
-            Next &rarr;
-          </button>
-        </div>
+  const handleNextClick = () => {
+    setPage(page + 1);
+  };
+
+  return (
+    <div className="container my-3">
+      <h2 className="text-center">{q==="searchItem"?searchItem:q}</h2>
+      {loading && <Spinner />}
+      <div className="row">
+        {!loading &&
+          articles.map((element) => {
+            if (element.title == null || element.title === "[Removed]") return null;
+            return (
+              <div className="col-md-4" key={element.url}>
+                <NewsItem
+                  title={element.title ? element.title.slice(0, 60) : null}
+                  description={element.description ? element.description.slice(0, 80) : null}
+                  imageUrl={element.urlToImage ? element.urlToImage : defaultImage}
+                  newsUrl={element.url}
+                  author={element.author || "unknown"}
+                  date={element.publishedAt}
+                  source={element.source.name}
+                />
+              </div>
+            );
+          })}
       </div>
-    );
-  }
-}
+      <div className="container d-flex justify-content-between">
+        <button
+          type="button"
+          disabled={page <= 1}
+          className="button btn btn-outline-secondary"
+          onClick={handlePrevClick}
+        >
+          &larr; Previous
+        </button>
+        <button
+          className="button btn btn-info"
+        >
+          Page: {page}
+        </button>
+        <button
+          type="button"
+          disabled={page >= Math.floor(100 / pageSize) || page >= Math.ceil(totalResults / pageSize)}
+          className="button btn btn-outline-secondary"
+          onClick={handleNextClick}
+        >
+          Next &rarr;
+        </button>
+      </div>
+    </div>
+  );
+};
+
+News.defaultProps = {
+  q: "general",
+  pageSize: 6,
+};
+
+News.propTypes = {
+  q: PropTypes.string,
+  pageSize: PropTypes.number,
+};
 
 export default News;
