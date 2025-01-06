@@ -1,101 +1,101 @@
 import React, { useState, useEffect } from "react";
 import NewsItem from "./NewsItem";
-import PropTypes from "prop-types";
 import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const News = ({ pageSize, q }) => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  // const [defaultImage, setDefaultImage] = useState("news.jpeg");
+  const [loading, setLoading] = useState(true);
   const defaultImage = "/news.jpeg";
   const [page, setPage] = useState(1);
   const [totalResults, settotalResults] = useState(100);
   const { searchItem } = useParams(); // Get searchItem from the URL params
   const apiKey = process.env.REACT_APP_API_KEY;
-
+  console.log("articles",articles);
+  
   const updateNews = async (query) => {
-    console.log(searchItem);
-    
-    let url = `https://newsapi.org/v2/everything?q=${searchItem || query}&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
+    console.log("api");
+    let url = `https://newsapi.org/v2/everything?q=${
+      searchItem || query
+    }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
     setLoading(true);
     let data = await fetch(url);
     let parsedData = await data.json();
-    setArticles(parsedData.articles);
+    let x = [...articles,...parsedData.articles];
+    await sleep(1000);
+    setArticles(x);
+    //  learn from this code why it didn't work, it ruined my 20 hrs only this part
+    // setArticles((prev) => {
+    //   console.log("prev", prev);
+    //   console.log("new", parsedData.articles);
+    //   console.log("again");
+    //   if (parsedData.articles.length === 0) {
+    //     return prev; // No change if no articles found
+    //   }
+    //   return [...prev, ...parsedData.articles];
+    // });
+    // console.log(articles.length);
+
     settotalResults(parsedData.totalResults);
     setLoading(false);
   };
 
+  const handelInfiniteScroll = () => {
+    try {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        console.log("inside");
+        setPage((prev) => prev + 1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     updateNews(q);
-  }, [q, searchItem, pageSize, page]);
+  }, [q, searchItem, page]);
 
-  const handlePrevClick = () => {
-    setPage(page - 1);
-  };
+  useEffect(() => {
+    window.addEventListener("scroll", handelInfiniteScroll);
+    console.log("called");
 
-  const handleNextClick = () => {
-    setPage(page + 1);
-  };
+    return () => window.removeEventListener("scroll", handelInfiniteScroll);
+  }, []);
+
 
   return (
     <div className="container my-3">
-      <h2 className="text-center">{q==="searchItem"?searchItem:q}</h2>
-      {loading && <Spinner />}
+      <h2 className="text-center">{q === "searchItem" ? searchItem : q}</h2>
       <div className="row">
-        {!loading &&
-          articles.map((element) => {
-            if (element.title == null || element.title === "[Removed]") return null;
-            return (
-              <div className="col-md-4" key={element.url}>
-                <NewsItem
-                  title={element.title ? element.title.slice(0, 60) : null}
-                  description={element.description ? element.description.slice(0, 80) : null}
-                  imageUrl={element.urlToImage ? element.urlToImage : defaultImage}
-                  newsUrl={element.url}
-                  author={element.author || "unknown"}
-                  date={element.publishedAt}
-                  source={element.source.name}
-                />
-              </div>
-            );
-          })}
+        {articles.map((element) => {
+          if (element.title == null || element.title === "[Removed]")
+            return null;
+          return (
+            <div className="col-md-4" key={element.url}>
+              <NewsItem
+                title={element.title ? element.title.slice(0, 60) : null}
+                description={
+                  element.description ? element.description.slice(0, 80) : null
+                }
+                imageUrl={
+                  element.urlToImage ? element.urlToImage : defaultImage
+                }
+                newsUrl={element.url}
+                author={element.author || "unknown"}
+                date={element.publishedAt}
+                source={element.source.name}
+              />
+            </div>
+          );
+        })}
       </div>
-      <div className="container d-flex justify-content-between">
-        <button
-          type="button"
-          disabled={page <= 1}
-          className="button btn btn-outline-secondary"
-          onClick={handlePrevClick}
-        >
-          &larr; Previous
-        </button>
-        <button
-          className="button btn btn-info"
-        >
-          Page: {page}
-        </button>
-        <button
-          type="button"
-          disabled={page >= Math.floor(100 / pageSize) || page >= Math.ceil(totalResults / pageSize)}
-          className="button btn btn-outline-secondary"
-          onClick={handleNextClick}
-        >
-          Next &rarr;
-        </button>
-      </div>
+      {loading && <Spinner />}
     </div>
   );
-};
-
-News.defaultProps = {
-  q: "general",
-  pageSize: 6,
-};
-
-News.propTypes = {
-  q: PropTypes.string,
-  pageSize: PropTypes.number,
 };
 
 export default News;
