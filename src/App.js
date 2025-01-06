@@ -1,13 +1,10 @@
 import './App.css';
-// import React, { useState } from 'react';
 import NavBar from './components/NavBar';
 import News from './components/News';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  // const [searchQuery, setSearchQuery] = useState("general"); // Default search query
   const pageSize = 6;
-
   return (
     <div>
       <Router>

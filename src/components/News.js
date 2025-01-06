@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import NewsItem from "./NewsItem";
-import PropTypes from "prop-types";
 import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
 
 const News = ({ pageSize, q }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [defaultImage, setDefaultImage] = useState("news.jpeg");
   const defaultImage = "/news.jpeg";
   const [page, setPage] = useState(1);
   const [totalResults, settotalResults] = useState(100);
@@ -88,14 +86,5 @@ const News = ({ pageSize, q }) => {
   );
 };
 
-News.defaultProps = {
-  q: "general",
-  pageSize: 6,
-};
-
-News.propTypes = {
-  q: PropTypes.string,
-  pageSize: PropTypes.number,
-};
 
 export default News;
