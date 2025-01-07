@@ -29,20 +29,12 @@ const News = ({ pageSize, q, loadingBarRef }) => {
     }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
-
-    // console.log("old", articles);
-    // console.log("new", parsedData.articles);
-    // console.log("pppp ", page);
-
     await sleep(1000);
-
+    
     setArticles((prevArticles) => {
       if (page === 1) {
-        // Reset articles when it's the first page of a new search
-        // console.log("once");
         return parsedData.articles;
       }
-      // console.log("twice");
       return [...prevArticles, ...parsedData.articles];
     });
 
