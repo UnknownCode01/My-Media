@@ -3,7 +3,6 @@ import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const capitalizeFirstLetter = (val) =>
   val.charAt(0).toUpperCase() + val.slice(1);
 
@@ -11,45 +10,41 @@ const News = ({ pageSize, q, loadingBarRef }) => {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
   const [loadingState, setLoadingState] = useState(false);
-  const loadingRef = useRef(false); // Use ref to track loading state
+  const [SearchNo, setSearchNo] = useState(false);
   const { searchItem } = useParams();
+  const loadingRef = useRef(false); // Use ref to track loading state
   const apiKey = process.env.REACT_APP_API_KEY;
   const defaultImage = "/news.jpeg";
   const stopImage = "/stop1.jpg";
-  const decider = useRef(false);
-  
+  // console.log(articles);
+
   const updateNews = async () => {
-    if(!searchItem===undefined){
-      decider.current = true;
-    }
+    loadingRef.current = true; // Start loading
+    setLoadingState(true); // Show spinner
+    loadingBarRef.current.continuousStart(); // Show loading bar
     document.title = capitalizeFirstLetter(`${searchItem || q} - My Media`);
 
     let url = `https://newsapi.org/v2/everything?q=${
       searchItem || q
     }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
-
-    loadingRef.current = true; // Start loading
-    setLoadingState(true); // Show spinner
-    loadingBarRef.current.continuousStart(); // Show loading bar
-
-    //rerender for page loading only
     let data = await fetch(url);
     let parsedData = await data.json();
 
-    // console.log("old",articles);
-    // console.log("new",parsedData.articles);
+    // console.log("old", articles);
+    // console.log("new", parsedData.articles);
+    // console.log("pppp ", page);
 
     await sleep(1000);
-    // Combine the old and new articles
-    // let x = [...articles, ...parsedData.articles];
-    // setArticles(x); or
-    
-    if (decider.current) {
-      decider.current = false;
-      setArticles(parsedData.articles);
-    } else {
-      setArticles(articles.concat(parsedData.articles));
-    }
+
+    setArticles((prevArticles) => {
+      if (page === 1) {
+        // Reset articles when it's the first page of a new search
+        // console.log("once");
+        return parsedData.articles;
+      }
+      // console.log("twice");
+      return [...prevArticles, ...parsedData.articles];
+    });
 
     loadingRef.current = false; // End loading
     setLoadingState(false); // Hide spinner
@@ -66,7 +61,6 @@ const News = ({ pageSize, q, loadingBarRef }) => {
         document.documentElement.scrollHeight
       ) {
         // console.log(page);
-
         setPage((prev) => prev + 1); // Increment page number
       }
     } catch (error) {
@@ -74,8 +68,8 @@ const News = ({ pageSize, q, loadingBarRef }) => {
     }
   };
 
+  //Handles the query and new page fetch
   useEffect(() => {
-    // console.log("Current Page:", page);
     if (page < Math.floor(100 / pageSize)) {
       updateNews();
     } else if (page == Math.floor(100 / pageSize)) {
@@ -94,8 +88,19 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       };
       setArticles((prev) => [...prev, x]);
     }
-  }, [q, searchItem, page]);
+  }, [q, SearchNo, page]);
 
+  // Reset articles and page when searchItem changes
+  useEffect(() => {
+    setArticles([]); // Reset articles
+    if (page > 1) {
+      setPage(1); // Reset page to 1
+    } else {
+      setSearchNo(!SearchNo);   //For not choosing to set searchItem in both the use effect this variable helps when page = 1 and you are searching after one or more search
+    }
+  }, [searchItem]); // Triggered when searchItem changes
+
+  //For handling scrolls
   useEffect(() => {
     window.addEventListener("scroll", handelInfiniteScroll);
     return () => window.removeEventListener("scroll", handelInfiniteScroll);

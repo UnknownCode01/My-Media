@@ -28,6 +28,14 @@ const NavBar = () => {
     setSearch(""); 
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      // Trigger the search when Enter is pressed
+      event.preventDefault(); // Prevent default behavior (if necessary)
+      handleSearchClick(); // Call the search function
+    }
+  };
+
   return (
     <div>
       <nav
@@ -144,6 +152,7 @@ const NavBar = () => {
                 aria-label="Search"
                 value={search}
                 onChange={handleSearchChange}
+                onKeyDown={handleKeyDown}
               />
               <Link className="btn search-buton btn-success" to={`/search/${search}`} onClick={handleSearchClick}>
                 Search

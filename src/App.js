@@ -51,7 +51,7 @@ const App = () => {
           />
           <Route
             path="/search/:searchItem"
-            element={<News key="search" pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
+            element={<News key={window.location.pathname} pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
           />
         </Routes>
       </Router>
