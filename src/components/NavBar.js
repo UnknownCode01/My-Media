@@ -31,7 +31,7 @@ const NavBar = () => {
   return (
     <div>
       <nav
-        className={`navbar navbar-expand-lg ${
+        className={`navbar fixed-top navbar-expand-lg ${
           isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
         }`}
       >
