@@ -1,12 +1,13 @@
 # My Media
 
-My Media is a React-based web application designed to fetch and display the latest news from a public API. The app allows users to view trending news articles in real time, with options to filter by various categories like Head Lines, Science, Business, Tech, Politics, Entertainment and Sports.
+My Media is a React-based web application designed to fetch and display the latest news from a public API. The app allows users to view and search trending news articles in real time, with options to filter by various categories like Head Lines, Science, Business, Tech, Politics, Entertainment and Sports.
 
 ## Features
 
 - Fetches real-time news articles from a public API.
 - Displays news articles in a clean and intuitive layout.
 - Allows users to filter news by category (e.g., Technology, Sports, Business).
+- Allows users to search for news on any topic using a dedicated search bar.
 - Responsive design for seamless experience on all devices.
 
 ## Technologies Used
