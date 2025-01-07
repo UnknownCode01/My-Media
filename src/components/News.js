@@ -4,9 +4,10 @@ import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const capitalizeFirstLetter = (val) => val.charAt(0).toUpperCase() + val.slice(1);
+const capitalizeFirstLetter = (val) =>
+  val.charAt(0).toUpperCase() + val.slice(1);
 
-const News = ({ pageSize, q , loadingBarRef}) => {
+const News = ({ pageSize, q, loadingBarRef }) => {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
   const [loadingState, setLoadingState] = useState(false);
@@ -14,10 +15,15 @@ const News = ({ pageSize, q , loadingBarRef}) => {
   const { searchItem } = useParams();
   const apiKey = process.env.REACT_APP_API_KEY;
   const defaultImage = "/news.jpeg";
-  const stopImage = "/stop1.jpg"
-
+  const stopImage = "/stop1.jpg";
+  const decider = useRef(false);
+  
   const updateNews = async () => {
+    if(!searchItem===undefined){
+      decider.current = true;
+    }
     document.title = capitalizeFirstLetter(`${searchItem || q} - My Media`);
+
     let url = `https://newsapi.org/v2/everything?q=${
       searchItem || q
     }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
@@ -26,19 +32,24 @@ const News = ({ pageSize, q , loadingBarRef}) => {
     setLoadingState(true); // Show spinner
     loadingBarRef.current.continuousStart(); // Show loading bar
 
-    
     //rerender for page loading only
     let data = await fetch(url);
     let parsedData = await data.json();
-    
+
     // console.log("old",articles);
     // console.log("new",parsedData.articles);
-    
+
     await sleep(1000);
     // Combine the old and new articles
     // let x = [...articles, ...parsedData.articles];
     // setArticles(x); or
-    setArticles(articles.concat(parsedData.articles));
+    
+    if (decider.current) {
+      decider.current = false;
+      setArticles(parsedData.articles);
+    } else {
+      setArticles(articles.concat(parsedData.articles));
+    }
 
     loadingRef.current = false; // End loading
     setLoadingState(false); // Hide spinner
@@ -55,7 +66,7 @@ const News = ({ pageSize, q , loadingBarRef}) => {
         document.documentElement.scrollHeight
       ) {
         // console.log(page);
-        
+
         setPage((prev) => prev + 1); // Increment page number
       }
     } catch (error) {
@@ -65,23 +76,24 @@ const News = ({ pageSize, q , loadingBarRef}) => {
 
   useEffect(() => {
     // console.log("Current Page:", page);
-    if(page<Math.floor(100/pageSize)){
+    if (page < Math.floor(100 / pageSize)) {
       updateNews();
+    } else if (page == Math.floor(100 / pageSize)) {
+      const x = {
+        source: {
+          id: null,
+          name: "My Media",
+        },
+        author: "My Media Team",
+        title: "Excessive Consumption of News is Detrimental to the Mind",
+        description:
+          "Consuming more can lead to mental discomfort, take a break",
+        url: "",
+        urlToImage: stopImage,
+        publishedAt: "January 01, 1969 17:54:48",
+      };
+      setArticles((prev) => [...prev, x]);
     }
-    else if(page==Math.floor(100/pageSize)){
-      const x = {"source": {
-                "id": null,
-                "name": "My Media"
-            },
-            "author": "My Media Team",
-            "title": "Excessive Consumption of News is Detrimental to the Mind",
-            "description": "Consuming more can lead to mental discomfort, take a break",
-            "url": "",
-            "urlToImage": stopImage,
-            "publishedAt": "January 01, 1969 17:54:48"}
-      setArticles((prev) => [...prev,x]);
-    }
-    
   }, [q, searchItem, page]);
 
   useEffect(() => {

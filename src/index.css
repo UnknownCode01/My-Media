@@ -13,14 +13,37 @@ code {
 }
 
 body {
-  background-color: white;
+  background-color: #aad1d4;
   color: black;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .button {
-  background-color: #fff;
+  background-color: #97cfd3;
   color: black;
+}
+
+.input-button{
+  background-color: #d4d3d3;
+}
+
+.search-buton{
+  border:1px solid rgb(27, 116, 33);
+}
+
+.read-more-button {
+  background-color: #1257ab;
+  color: rgb(255, 255, 255);
+  border:0px;
+}
+
+.card-body{
+  background-color: #00767d31;
+}
+
+.navbar{
+  background-color: #4a758a;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Horizontal, Vertical, Blur Radius, Color */
 }
 
 /* Dark Mode Styles */
@@ -31,9 +54,13 @@ body.dark-mode{
 }
 
 body.dark-mode .button {
-  background-color: #343a40;
+  background-color: #3a4147;
   color: white;
-  border:1px solid rgb(0, 0, 0);
+  border:1px solid rgb(9, 40, 45);
+}
+
+body.dark-mode .input-button{
+  background-color: #bcbbbb;
 }
 
 body.dark-mode .card-body {

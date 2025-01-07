@@ -32,7 +32,7 @@ const NavBar = () => {
     <div>
       <nav
         className={`navbar fixed-top navbar-expand-lg ${
-          isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
+          isDarkMode ? "navbar-dark bg-dark" : "navbar-dark"
         }`}
       >
         <div className="container-fluid">
@@ -138,14 +138,14 @@ const NavBar = () => {
             {/* Search */}
             <div className="d-flex" role="search">
               <input
-                className="form-control me-2"
+                className="form-control me-2 input-button"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
                 value={search}
                 onChange={handleSearchChange}
               />
-              <Link className="btn btn-success" to={`/search/${search}`} onClick={handleSearchClick}>
+              <Link className="btn search-buton btn-success" to={`/search/${search}`} onClick={handleSearchClick}>
                 Search
               </Link>
             </div>
