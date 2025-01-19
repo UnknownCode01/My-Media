@@ -50,6 +50,22 @@ const App = () => {
             element={<News key="sports" pageSize={pageSize} q="sports" loadingBarRef={loadingBarRef} />}
           />
           <Route
+            path="/myCity/:searchItem"
+            element={<News key="city" pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
+          />
+          <Route
+            path="/myDistrict/:searchItem"
+            element={<News key="district" pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
+          />
+          <Route
+            path="/myState/:searchItem"
+            element={<News key="state" pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
+          />
+          <Route
+            path="/myCountry/:searchItem"
+            element={<News key="country" pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
+          />
+          <Route
             path="/search/:searchItem"
             element={<News key={window.location.pathname} pageSize={pageSize} q="searchItem" loadingBarRef={loadingBarRef} />}
           />

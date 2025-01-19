@@ -8,6 +8,11 @@ const NavBar = () => {
   );
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const locationApiKey = process.env.REACT_APP_LOCATION_API_KEY;
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     // Apply dark mode when component mounts
@@ -25,15 +30,43 @@ const NavBar = () => {
 
   const handleSearchClick = () => {
     navigate(`/search/${search}`);
-    setSearch(""); 
+    setSearch("");
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       // Trigger the search when Enter is pressed
       event.preventDefault(); // Prevent default behavior (if necessary)
       handleSearchClick(); // Call the search function
     }
+  };
+
+  const gotLocation = async (position) => {
+    const { latitude, longitude } = position.coords;
+    const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${locationApiKey}`;
+
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      const address = data.results[0].components;
+      setCity(address.city);
+      setDistrict(address.state_district);
+      setState(address.state);
+      setCountry(address.country);
+      console.log(city);
+      
+    } catch (error) {
+      console.log(error);
+    }
+    
+  };
+
+  const errorLocation = () => {
+    console.log("Error at Location");
+  };
+
+  const nearMe = () => {
+    navigator.geolocation.getCurrentPosition(gotLocation, errorLocation);
   };
 
   return (
@@ -99,35 +132,40 @@ const NavBar = () => {
                   Sports
                 </Link>
               </li>
-              {/* Drop-Down */}
-              {/* {<li className="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   to="/dropdown"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  onClick={nearMe}
                 >
                   Near Me
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/myCity">
+                    <Link className="dropdown-item" to={`/myCity/${city}`}>
                       My City
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/myState">
+                    <Link className="dropdown-item" to={`/myDistrict/${district}`}>
+                      My District
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={`/myState/${state}`}>
                       My State
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/myCountry">
+                    <Link className="dropdown-item" to={`/myCountry/${country}`}>
                       My Country
                     </Link>
                   </li>
                 </ul>
-              </li>} */}
+              </li>
             </ul>
             <div className="d-flex me-4 mb-2 mb-lg-0">
               <button
@@ -154,7 +192,11 @@ const NavBar = () => {
                 onChange={handleSearchChange}
                 onKeyDown={handleKeyDown}
               />
-              <Link className="btn search-buton btn-success" to={`/search/${search}`} onClick={handleSearchClick}>
+              <Link
+                className="btn search-buton btn-success"
+                to={`/search/${search}`}
+                onClick={handleSearchClick}
+              >
                 Search
               </Link>
             </div>
