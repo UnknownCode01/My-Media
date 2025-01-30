@@ -8,6 +8,7 @@ My Media is a React-based web application designed to fetch and display the late
 - Displays news articles in a clean and intuitive layout.
 - Allows users to filter news by category (e.g., Technology, Sports, Business).
 - Responsive design for seamless experience on all devices.
+- Displays Near by location news on selection using advanced aggressive upload method.
 
 ## Technologies Used
 
