@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const capitalizeFirstLetter = (val) =>
   val.charAt(0).toUpperCase() + val.slice(1);
@@ -9,16 +10,20 @@ const capitalizeFirstLetter = (val) =>
 const News = ({ pageSize, q, loadingBarRef }) => {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
-  const [loadingState, setLoadingState] = useState(false);
   const [SearchNo, setSearchNo] = useState(false);
   const { searchItem } = useParams();
+  const [loadingState, setLoadingState] = useState(false);
   const loadingRef = useRef(false); // Use ref to track loading state
   const apiKey = process.env.REACT_APP_API_KEY;
   const defaultImage = "/news.jpeg";
-  const stopImage = "/stop1.jpg";
+  const stopImage = "/stop.jpg";
+  const errorImage = "/error.jpg";
+  const [error, setError] = useState(false);
+  const [totalResults, settotalResults] = useState(100);
+  const [newsCount, setnewsCount] = useState(0);
   // console.log(articles);
 
-  const updateNews = async () => {
+  const updateNews = useCallback(async () => {
     loadingRef.current = true; // Start loading
     setLoadingState(true); // Show spinner
     loadingBarRef.current.continuousStart(); // Show loading bar
@@ -27,24 +32,53 @@ const News = ({ pageSize, q, loadingBarRef }) => {
     let url = `https://newsapi.org/v2/everything?q=${
       searchItem || q
     }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    await sleep(1000);
-    
-    setArticles((prevArticles) => {
-      if (page === 1) {
-        return parsedData.articles;
+    try {
+      // console.log("Trying")
+      let data = await fetch(url);
+      if (!data.ok) {  // Check if response is not OK
+        throw new Error(`HTTP error! Status: ${data.status}`);
       }
-      return [...prevArticles, ...parsedData.articles];
-    });
+      let parsedData = await data.json();
+      settotalResults(parsedData.totalResults);
+      await sleep(1000);
 
-    loadingRef.current = false; // End loading
-    setLoadingState(false); // Hide spinner
-    loadingBarRef.current.complete(); // Complete loading bar
-  };
+      setArticles((prevArticles) => {
+        if (page === 1) {
+          return parsedData.articles;
+        }
+        return [...prevArticles, ...parsedData.articles];
+      });
+    } catch (error) {
+      // console.error("Failed to fetch news:", error);
+      setError(true);
+      let data = {
+        "status": "ok",
+        "totalResults": 1,
+        "articles": [
+          {
+            "source": {
+              "id": null,
+              "name": "My Media"
+            },
+            "author": "My Media Team",
+            "title": "Error",
+            "description": "An error Occured with API",
+            "url": "",
+            "urlToImage": errorImage,
+            "publishedAt": null,
+            "content": ""
+          }
+        ]
+      }
+      setArticles(data.articles)
+    } finally {
+      loadingRef.current = false; // End loading
+      setLoadingState(false); // Hide spinner
+      loadingBarRef.current.complete(); // Complete loading bar
+    }
+  }, [searchItem, q, page, pageSize]);
 
   const handelInfiniteScroll = () => {
-    try {
       // Only trigger the page increment if it's not already loading
       if (loadingRef.current) return; // Check the loading state using ref
 
@@ -54,17 +88,15 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       ) {
         // console.log(page);
         setPage((prev) => prev + 1); // Increment page number
+        setnewsCount(page*6);
       }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   //Handles the query and new page fetch
   useEffect(() => {
-    if (page < Math.floor(100 / pageSize)) {
+    if (page < Math.floor(100 / pageSize) && newsCount<totalResults) {
       updateNews();
-    } else if (page == Math.floor(100 / pageSize)) {
+    } else {
       const x = {
         source: {
           id: null,
@@ -76,11 +108,11 @@ const News = ({ pageSize, q, loadingBarRef }) => {
           "Consuming more can lead to mental discomfort, take a break",
         url: "",
         urlToImage: stopImage,
-        publishedAt: "January 01, 1969 17:54:48",
+        publishedAt: null,
       };
       setArticles((prev) => [...prev, x]);
     }
-  }, [q, SearchNo, page]);
+  }, [q, SearchNo, page, updateNews]);
 
   // Reset articles and page when searchItem changes
   useEffect(() => {
@@ -88,7 +120,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
     if (page > 1) {
       setPage(1); // Reset page to 1
     } else {
-      setSearchNo(!SearchNo);   //For not choosing to set searchItem in both the use effect this variable helps when page = 1 and you are searching after one or more search
+      setSearchNo(!SearchNo); //For not choosing to set searchItem in both the use effect this variable helps when page = 1 and you are searching after one or more search
     }
   }, [searchItem]); // Triggered when searchItem changes
 
@@ -99,11 +131,12 @@ const News = ({ pageSize, q, loadingBarRef }) => {
   }, []);
 
   return (
+    <>
     <div className="container my-3">
-      <h2 className="text-center">{capitalizeFirstLetter(searchItem || q)}</h2>
-      <div className="row">
+      <h2 className="text-center">{error?"Error":capitalizeFirstLetter(searchItem || q)}</h2>
+      <div className={`row ${error ? 'justify-content-center' : ''}`}>
         {articles.map((element) => {
-          if (element.title == null || element.title === "[Removed]")
+          if (element.title === null || element.title === "[Removed]")
             return null;
           return (
             <div className="col-md-4" key={element.url}>
@@ -126,6 +159,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       </div>
       {loadingRef.current && <Spinner />}
     </div>
+    </>
   );
 };
 

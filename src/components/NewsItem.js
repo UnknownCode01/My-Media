@@ -22,7 +22,7 @@ const NewsItem = ({ title, description, imageUrl, newsUrl, author, date, source 
           <p className="card-text">{description}...</p>
           <p className="card-text">
             <small className="text-body-secondary">
-              By {author} on {new Date(date).toGMTString()}
+              By {author} on {date===null?"now":new Date(date).toGMTString()}
             </small>
           </p>
           <a

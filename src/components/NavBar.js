@@ -133,7 +133,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item dropdown">
-                <a
+                <Link
                   className="nav-link dropdown-toggle"
                   to="/dropdown"
                   role="button"
@@ -142,7 +142,7 @@ const NavBar = () => {
                   onClick={nearMe}
                 >
                   Near Me
-                </a>
+                </Link>
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to={`/myCity/${city}`}>
