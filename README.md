@@ -74,7 +74,7 @@ You should now see the "My Media" app running on your local machine, displaying 
 ## API Key
 
 - To use the news API, you'll need an API key.
-- Visit [News API](https://newsapi.org/) and [Location API](https://api.opencagedata.com) to obtain your API key.
+- Visit [News API](https://newsapi.org/) and [Location API](https://opencagedata.com/) to obtain your API key.
 - Once you have the key, add it to the `.env` file in the project root:
 
   ```
