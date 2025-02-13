@@ -52,7 +52,7 @@ Once the dependencies are installed, you can run the application in development 
 ### 1. Start the Development Server
 
 ```bash
-npm start
+npm run dev
 ```
 
 ### 2. Open the Application
@@ -60,7 +60,7 @@ npm start
 After the server has started, open your browser and go to:
 
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 You should now see the "My Media" app running on your local machine, displaying the latest news articles.
@@ -74,11 +74,12 @@ You should now see the "My Media" app running on your local machine, displaying 
 ## API Key
 
 - To use the news API, you'll need an API key.
-- Visit [News API](https://newsapi.org/) to obtain your API key.
-- Once you have the key, add it to the `.env.local` file in the project root:
+- Visit [News API](https://newsapi.org/) and [Location API](https://api.opencagedata.com) to obtain your API key.
+- Once you have the key, add it to the `.env` file in the project root:
 
   ```
-  REACT_APP_NEWS_API_KEY=your-api-key-here
+ VITE_API_KEY = your-api-key-here
+ VITE_LOCATION_API_KEY = your-api-key-here
   ```
 
 ## Contributing
