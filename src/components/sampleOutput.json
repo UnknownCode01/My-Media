@@ -17,6 +17,19 @@
         },
         {
             "source": {
+                "id": null,
+                "name": "CBS Sports"
+            },
+            "author": "",
+            "title": "CeeDee Lamb out for season: Cowboys' Micah Parsons, Cooper Rush appreciate star wideout's 'warrior' toughness - CBS Sports",
+            "description": "Dallas ruled Lamb out for the final two games with his ailing shoulder injury",
+            "url": "https://www.cbssports.com/nfl/news/ceedee-lamb-out-for-season-cowboys-micah-parsons-cooper-rush-appreciate-star-wideouts-warrior-toughness/",
+            "urlToImage": "https://sportshub.cbsistatic.com/i/r/2024/12/26/a6506bc9-641d-4014-8852-71bce73b59fc/thumbnail/1200x675/336d78e75a76f9acf05ac2df6770f13c/lamb-5g.jpg",
+            "publishedAt": "2024-12-26T23:45:00Z",
+            "content": "FRISCO, Texas -- The Dallas Cowboys' injury-plagued 2024 season took another turn on Thursday with the team announcing they are shutting down All-Pro wide receiver CeeDee Lamb for the team's final tw… [+4648 chars]"
+        },
+        {
+            "source": {
                 "id": "cnn",
                 "name": "CNN"
             },

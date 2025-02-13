@@ -8,7 +8,7 @@ const NavBar = () => {
   );
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const locationApiKey = process.env.REACT_APP_LOCATION_API_KEY;
+  const locationApiKey = import.meta.env.VITE_LOCATION_API_KEY;
   const [city, setCity] = useState("");
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const capitalizeFirstLetter = (val) =>
@@ -14,7 +15,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
   const { searchItem } = useParams();
   const [loadingState, setLoadingState] = useState(false);
   const loadingRef = useRef(false); // Use ref to track loading state
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
   const defaultImage = "/news.jpeg";
   const stopImage = "/stop.jpg";
   const errorImage = "/error.jpg";
@@ -33,20 +34,19 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       searchItem || q
     }&apiKey=${apiKey}&sortBy=date&page=${page}&pageSize=${pageSize}`;
     try {
-      // console.log("Trying")
-      let data = await fetch(url);
-      if (!data.ok) {  // Check if response is not OK
+      // let data = await fetch(url);
+      let data = await axios.get(url);
+      let parsedData = data.data;
+
+      if (parsedData.status !== 'ok') {  // Check if response is not OK
         throw new Error(`HTTP error! Status: ${data.status}`);
       }
-      let parsedData = await data.json();
+      // let parsedData = await data.json();
       settotalResults(parsedData.totalResults);
       await sleep(1000);
-
+      
       setArticles((prevArticles) => {
-        if (page === 1) {
-          return parsedData.articles;
-        }
-        return [...prevArticles, ...parsedData.articles];
+        return page === 1?parsedData.articles:[...prevArticles, ...parsedData.articles];
       });
     } catch (error) {
       // console.error("Failed to fetch news:", error);
@@ -141,6 +141,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
           return (
             <div className="col-md-4" key={element.url}>
               <NewsItem
+              key={element.url}
                 title={element.title ? element.title.slice(0, 60) : null}
                 description={
                   element.description ? element.description.slice(0, 80) : null
