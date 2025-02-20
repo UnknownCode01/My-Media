@@ -76,7 +76,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       setLoadingState(false); // Hide spinner
       loadingBarRef.current.complete(); // Complete loading bar
     }
-  }, [searchItem, q, page, pageSize]);
+  }, [q, page, pageSize]);
 
   const handelInfiniteScroll = () => {
       // Only trigger the page increment if it's not already loading
