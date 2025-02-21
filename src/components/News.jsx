@@ -24,7 +24,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
   const [newsCount, setnewsCount] = useState(0);
   // console.log(articles);
 
-  const updateNews = useCallback(async () => {
+  const updateNews = async () => {
     loadingRef.current = true; // Start loading
     setLoadingState(true); // Show spinner
     loadingBarRef.current.continuousStart(); // Show loading bar
@@ -38,65 +38,67 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       let data = await axios.get(url);
       let parsedData = data.data;
 
-      if (parsedData.status !== 'ok') {  // Check if response is not OK
+      if (parsedData.status !== "ok") {
+        // Check if response is not OK
         throw new Error(`HTTP error! Status: ${data.status}`);
       }
       // let parsedData = await data.json();
       settotalResults(parsedData.totalResults);
       await sleep(1000);
-      
+
       setArticles((prevArticles) => {
-        return page === 1?parsedData.articles:[...prevArticles, ...parsedData.articles];
+        return page === 1
+          ? parsedData.articles
+          : [...prevArticles, ...parsedData.articles];
       });
     } catch (error) {
       // console.error("Failed to fetch news:", error);
       setError(true);
       let data = {
-        "status": "ok",
-        "totalResults": 1,
-        "articles": [
+        status: "ok",
+        totalResults: 1,
+        articles: [
           {
-            "source": {
-              "id": null,
-              "name": "My Media"
+            source: {
+              id: null,
+              name: "My Media",
             },
-            "author": "My Media Team",
-            "title": "Error",
-            "description": "An error Occured with API",
-            "url": "",
-            "urlToImage": errorImage,
-            "publishedAt": null,
-            "content": ""
-          }
-        ]
-      }
-      setArticles(data.articles)
+            author: "My Media Team",
+            title: "Error",
+            description: "An error Occured with API",
+            url: "",
+            urlToImage: errorImage,
+            publishedAt: null,
+            content: "",
+          },
+        ],
+      };
+      setArticles(data.articles);
     } finally {
       loadingRef.current = false; // End loading
       setLoadingState(false); // Hide spinner
       loadingBarRef.current.complete(); // Complete loading bar
     }
-  }, [q, page, pageSize]);
+  };
 
+  // Only trigger the page increment if it's not already loading
   const handelInfiniteScroll = () => {
-      // Only trigger the page increment if it's not already loading
-      if (loadingRef.current) return; // Check the loading state using ref
-
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight
-      ) {
-        // console.log(page);
-        setPage((prev) => prev + 1); // Increment page number
-        setnewsCount(page*6);
-      }
+    if (loadingRef.current) return; // Check the loading state using ref
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      // console.log(page);
+      setPage((prev) => prev + 1); // Increment page number
+      setnewsCount(page * 6);
+    }
   };
 
   //Handles the query and new page fetch
   useEffect(() => {
-    if (page < Math.floor(100 / pageSize) && newsCount<totalResults) {
+    if (page < Math.floor(100 / pageSize) && newsCount < totalResults) {
       updateNews();
-    } else {
+    } else if(page == Math.floor(100 / pageSize) || newsCount == totalResults) {
       const x = {
         source: {
           id: null,
@@ -112,7 +114,7 @@ const News = ({ pageSize, q, loadingBarRef }) => {
       };
       setArticles((prev) => [...prev, x]);
     }
-  }, [q, SearchNo, page, updateNews]);
+  }, [q, SearchNo, page]);
 
   // Reset articles and page when searchItem changes
   useEffect(() => {
@@ -132,34 +134,38 @@ const News = ({ pageSize, q, loadingBarRef }) => {
 
   return (
     <>
-    <div className="container my-3">
-      <h2 className="text-center">{error?"Error":capitalizeFirstLetter(searchItem || q)}</h2>
-      <div className={`row ${error ? 'justify-content-center' : ''}`}>
-        {articles.map((element) => {
-          if (element.title === null || element.title === "[Removed]")
-            return null;
-          return (
-            <div className="col-md-4" key={element.url}>
-              <NewsItem
-              key={element.url}
-                title={element.title ? element.title.slice(0, 60) : null}
-                description={
-                  element.description ? element.description.slice(0, 80) : null
-                }
-                imageUrl={
-                  element.urlToImage ? element.urlToImage : defaultImage
-                }
-                newsUrl={element.url}
-                author={element.author || "unknown"}
-                date={element.publishedAt}
-                source={element.source.name}
-              />
-            </div>
-          );
-        })}
+      <div className="container my-3">
+        <h2 className="text-center">
+          {error ? "Error" : capitalizeFirstLetter(searchItem || q)}
+        </h2>
+        <div className={`row ${error ? "justify-content-center" : ""}`}>
+          {articles.map((element) => {
+            if (element.title === null || element.title === "[Removed]")
+              return null;
+            return (
+              <div className="col-md-4" key={element.url}>
+                <NewsItem
+                  key={element.url}
+                  title={element.title ? element.title.slice(0, 60) : null}
+                  description={
+                    element.description
+                      ? element.description.slice(0, 80)
+                      : null
+                  }
+                  imageUrl={
+                    element.urlToImage ? element.urlToImage : defaultImage
+                  }
+                  newsUrl={element.url}
+                  author={element.author || "unknown"}
+                  date={element.publishedAt}
+                  source={element.source.name}
+                />
+              </div>
+            );
+          })}
+        </div>
+        {loadingRef.current && <Spinner />}
       </div>
-      {loadingRef.current && <Spinner />}
-    </div>
     </>
   );
 };
